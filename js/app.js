@@ -6,32 +6,26 @@ function alterarStatus(id){
 
     let imagem = gameClicado.querySelector('.dashboard__item__img');
     let botao = gameClicado.querySelector('.dashboard__item__button');
-    let nomeDoJogo = gameClicado.querySelector('.dashboard__item__name');
+    let nomeDoJogo = gameClicado.querySelector('.dashboard__item__name').innerText;
     
         
             if(imagem.classList.contains('dashboard__item__img--rented')){
                
-                resposta = prompt('Você quer confirmar a devolução do(a) '+ nomeDoJogo.innerText);
-
-                if(resposta.toLowerCase() == 'sim'){
+                if(confirm('Você quer confirmar a devolução do(a) '+ nomeDoJogo)){
+                    imagem.classList.remove('dashboard__item__img--rented');
+                    botao.classList.remove('dashboard__item__button--return');
+                    botao.innerText = 'Alugar';
+                 }
                 
-                imagem.classList.remove('dashboard__item__img--rented');
-                botao.classList.remove('dashboard__item__button--return');
-                botao.innerText = 'Alugar';
-
-                }else if(resposta.toLowerCase() == 'nao' || resposta.toLowerCase() == 'não'){
-                    return ;
                 }else {
-                    alert('Resposta Inválida!');
+                    imagem.classList.add('dashboard__item__img--rented');
+                    botao.classList.add('dashboard__item__button--return');
+                    botao.innerText = 'Devolver';
+                    quantidadeAlugada++;   
+                    console.log(quantidadeAlugada);        
                 }
-
-            }else {
-                imagem.classList.add('dashboard__item__img--rented');
-                botao.classList.add('dashboard__item__button--return');
-                botao.innerText = 'Devolver';
-                quantidadeAlugada++;   
-                console.log(quantidadeAlugada);        
             }
-            
-            
-}
+
+                
+   
+
